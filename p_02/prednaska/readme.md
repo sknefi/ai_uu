@@ -82,12 +82,12 @@ Agent = Architektúra + Program
 - **Program:** softvér určujúci správanie a akcie
 
 ## 🔸 Príklady prostredí pre rôznych agentov
-| Prostredie | Pozorovateľnosť | Dynamika | Sekvenčnosť | Determinizmus | Počet agentov |
-|------------|-----------------|----------|-------------|---------------|---------------|
-| Šach       | Plná            | Statické | Sekvenčné   | Deterministické | Jedno-agentné |
-| Poker      | Čiastočná       | Statické | Sekvenčné   | Stochastické  | Multiagentné  |
-| Fortnite   | Čiastočne       | Dynamické| Sekvenčné   | Stochastické  | Multiagentné  |
-| Sudoku     | Plne            | Statické | Sekvenčné   | Deterministické| Jedno-agentné |
-| Kontrola kvality výrobkov | Plne | Statické | Epizodické | Deterministické | Jedno-agentné |
-| Autonómne vozidlo | Čiastočne | Dynamické | Sekvenčné | Stochastické | Multiagentné |
-| Poker      | Čiastočná       | Statické | Sekvenčné   | Stochastické  | Multiagentné  |
+
+| Prostredie | Pozorovateľnosť | Dynamika | Sekvenčnosť | Determinizmus | Počet agentov | Spojitosť | Známe/Neznáme |
+|------------|-----------------|----------|-------------|---------------|---------------|------------|---------------|
+| Šach       | Plná            | Statické | Sekvenčné   | Deterministické | Jedno-agentné | Diskrétne  | Známe        |
+| Poker      | Čiastočná       | Statické | Sekvenčné   | Stochastické  | Multiagentné  | Diskrétne  | Neznáme      |
+| Fortnite   | Čiastočne       | Dynamické| Sekvenčné   | Stochastické  | Multiagentné  | Spojité    | Neznáme      |
+| Sudoku     | Plne            | Statické | Sekvenčné   | Deterministické| Jedno-agentné | Diskrétne  | Známe        |
+| Kontrola kvality výrobkov | Plne | Statické | Epizodické | Deterministické | Jedno-agentné | Diskrétne  | Známe        |
+| Autonómne vozidlo | Čiastočne | Dynamické | Sekvenčné | Stochastické | Multiagentné | Spojité    | Neznáme      |
