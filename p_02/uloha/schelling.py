@@ -1,6 +1,5 @@
 import numpy as np
 import random as rd
-import matplotlib.pyplot as plt
 from graphic import *
 from constants import *
 
@@ -19,34 +18,34 @@ def is_same_color(agent1, agent2):
         return 0
 
 def calc_rat(agents, x, y):
-	# 1 2 3
-	# 4 x 5
-	# 6 7 8
-	# calc ratio of neighbors with same color
-	# formula: same_color_neighbors / all_neighbors
-	rat = 0
-	same_color_neighbors = 0
-	all_neighbors = 0
-	current_agent = agents[x, y]
-	for i in range(x-RADIUS, x+RADIUS):
-		i = i % N
-		for j in range(y-RADIUS, y+RADIUS):
-			j = j % N
-			if i == x and j == y: # skip current agent
-				continue
-			if agents[i, j] != EMPTY: # skip empty cells
-				all_neighbors += 1
-				same_color_neighbors += is_same_color(agents[i, j], current_agent)
-	if all_neighbors == 0:
-		return 0
-	rat = same_color_neighbors / all_neighbors
-	return rat
+    # calc ratio of neighbors with same color
+    # formula: same_color_neighbors / all_neighbors
+    same_color_neighbors = 0
+    all_neighbors = 0
+    current_agent = agents[x, y]
+    
+    # Check all neighbors in the radius (including the edge)
+    for i in range(x-RADIUS, x+RADIUS+1):
+        i = i % N
+        for j in range(y-RADIUS, y+RADIUS+1):
+            j = j % N
+            if i == x and j == y:  # skip current agent
+                continue
+            if agents[i, j] != EMPTY:  # skip empty cells
+                all_neighbors += 1
+                if is_same_color(agents[i, j], current_agent):
+                    same_color_neighbors += 1
+    
+    if all_neighbors == 0:
+        return 0
+    
+    return same_color_neighbors / all_neighbors
 
 def update_agents(agents):
     # agent is sad when rat < TOL
 	# set agent happy or sad based on rat
-	sad_agents = []
 	null_agents = []
+	sad_agents = []
 	for i in range(N):
 		for j in range(N):
 			current_agent = agents[i, j]
@@ -66,6 +65,50 @@ def update_agents(agents):
 				null_agents.append([i, j])
 	return (agents, sad_agents, null_agents)
 
+def update_one_agent(agents, agent, sad_agents):
+    x, y = agent
+    # First check the agent at the position itself
+    if agents[x, y] != EMPTY:
+        rat = calc_rat(agents, x, y)
+        if rat < TOL:
+            if agents[x, y] in ORANGE:
+                agents[x, y] = ORANGE_SAD
+            else:
+                agents[x, y] = BLUE_SAD
+            if [x, y] not in sad_agents:
+                sad_agents.append([x, y])
+        else:
+            if agents[x, y] in ORANGE:
+                agents[x, y] = ORANGE_HAPPY
+            else:
+                agents[x, y] = BLUE_HAPPY
+            if [x, y] in sad_agents:
+                sad_agents.remove([x, y])
+    
+    # Then check all neighbors
+    for i in range(x-RADIUS, x+RADIUS+1):
+        i = i % N
+        for j in range(y-RADIUS, y+RADIUS+1):
+            j = j % N
+            if i == x and j == y:  # skip center agent
+                continue
+            if agents[i, j] != EMPTY:
+                rat = calc_rat(agents, i, j)
+                if rat < TOL:
+                    if agents[i, j] in ORANGE:
+                        agents[i, j] = ORANGE_SAD
+                    else:
+                        agents[i, j] = BLUE_SAD
+                    if [i, j] not in sad_agents:
+                        sad_agents.append([i, j])
+                else:
+                    if agents[i, j] in ORANGE:
+                        agents[i, j] = ORANGE_HAPPY
+                    else:
+                        agents[i, j] = BLUE_HAPPY
+                    if [i, j] in sad_agents:
+                        sad_agents.remove([i, j])
+    return agents
 
 def make_everyone_happy(agents, sad_agents, null_agents):
 	# choose random sad agent and move him to random null cell
@@ -78,19 +121,24 @@ def make_everyone_happy(agents, sad_agents, null_agents):
 		
 		# Set the old position to empty
 		agents[random_sad_agent[0], random_sad_agent[1]] = EMPTY
-		
-		# set all neighbors of sad agent to empty
-		random_null_agent, random_sad_agent = random_sad_agent, random_null_agent
-		for i in range(random_sad_agent[0] - RADIUS, random_sad_agent[0] + RADIUS):
+		null_agents.append(random_sad_agent)
+
+		for i in range(random_sad_agent[0]-RADIUS, random_sad_agent[0]+RADIUS):
 			i = i % N
-			for j in range(random_sad_agent[1] - RADIUS, random_sad_agent[1] + RADIUS):
+			for j in range(random_sad_agent[1]-RADIUS, random_sad_agent[1]+RADIUS):
 				j = j % N
-				if i == random_sad_agent[0] and j == random_sad_agent[1]:
-					continue
-				current_agent = agents[i, j]
+				if agents[i, j] != EMPTY:
+					update_one_agent(agents, [i, j], sad_agents)
+		
+		for i in range(random_null_agent[0]-RADIUS, random_null_agent[0]+RADIUS):
+			i = i % N
+			for j in range(random_null_agent[1]-RADIUS, random_null_agent[1]+RADIUS):
+				j = j % N
+				if agents[i, j] != EMPTY:
+					update_one_agent(agents, [i, j], sad_agents)
 
-
-		sad_agents.remove(random_sad_agent)
 		null_agents.remove(random_null_agent)
+		sad_agents.remove(random_sad_agent)
+		print(len(sad_agents), " === ", len(null_agents))
 
 	return agents
