@@ -1,6 +1,7 @@
 # Schelling's Segregation Model Simulation
-![Don't worry be happy](../../imgs_for_readme/schelling/dwbh.png)
 This project implements a simulation of Schelling's segregation model. The model demonstrates how individual preferences can lead to overall segregation, even when the individual bias is small. Agents are placed on a grid and update their "mood" (happy or sad) depending on the similarity of their neighbors. Unhappy (sad) agents then move to empty cells until everyone is content with their surroundings.
+
+![Don't worry be happy](../../imgs_for_readme/schelling/dwbh.png)
 
 ## Overview
 

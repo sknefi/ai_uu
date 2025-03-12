@@ -50,5 +50,7 @@ In this version of the Game of Life, the evolution of the system is governed by 
 5. **Execution:**
    - The `main` function runs through each test case, displaying the evolution of the cellular automaton for 20 iterations.
 
-### 1D game of life - input [DEAD, ALIVE, DEAD, ALIVE, ALIVE, DEAD, DEAD, ALIVE]
+### 1D game of life
+- input: [DEAD, ALIVE, DEAD, ALIVE, ALIVE, DEAD, DEAD, ALIVE]
+  
 ![Game of Life](../../imgs_for_readme/game_of_life/gameoflife.png)
