@@ -41,7 +41,7 @@ def calc_rat(agents, x, y):
 
 	return same_color_neighbors / all_neighbors
 
-def update_agents(agents): # tento nazov je kktsky prepisat
+def update_agents(agents):
     # agent is sad when rat < TOL
 	# set agent happy or sad based on rat
 	null_agents = []
