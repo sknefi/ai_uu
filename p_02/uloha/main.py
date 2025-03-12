@@ -9,4 +9,4 @@ if __name__ == "__main__":
 	happy_grid = updated_grid.copy()
 	happy_grid, num_happy_agents = make_everyone_happy(happy_grid, sad_agents, null_agents)
  
-	display_grid(grid, happy_grid)
+	display_grid(grid, updated_grid, happy_grid, num_happy_agents)

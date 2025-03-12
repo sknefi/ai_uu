@@ -130,6 +130,5 @@ def make_everyone_happy(agents, sad_agents, null_agents):
 		null_agents.remove(random_null_agent)
 		sad_agents.remove(random_sad_agent)
 		num_happy_agents.append(NUMBER_OF_AGENTS - len(sad_agents) - len(null_agents))
-		print(f"{NUMBER_OF_AGENTS} - {len(sad_agents)} - {len(null_agents)} = {num_happy_agents[-1]}")
-	print(num_happy_agents)
+		print(len(sad_agents))
 	return agents, num_happy_agents
