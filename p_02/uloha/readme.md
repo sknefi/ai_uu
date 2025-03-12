@@ -1,5 +1,5 @@
 # Schelling's Segregation Model Simulation
-
+![Don't worry be happy](../../imgs_for_readme/schelling/dwbh.png)
 This project implements a simulation of Schelling's segregation model. The model demonstrates how individual preferences can lead to overall segregation, even when the individual bias is small. Agents are placed on a grid and update their "mood" (happy or sad) depending on the similarity of their neighbors. Unhappy (sad) agents then move to empty cells until everyone is content with their surroundings.
 
 ## Overview
@@ -58,3 +58,31 @@ This project implements a simulation of Schelling's segregation model. The model
       happy_grid, num_happy_agents = make_everyone_happy(happy_grid, sad_agents, null_agents)
    
       display_grid(grid, updated_grid, happy_grid, num_happy_agents)
+
+## How Schelling's Segregation Model looks like on 100 iterations on different toleration
+### 80% toleration
+![Schelling 100 iterations, 80% toleration](../../imgs_for_readme/schelling/Schelling_100_80.png)
+
+### 70% toleration
+![Schelling 100 iterations, 70% toleration](../../imgs_for_readme/schelling/Schelling_100_70.png)
+
+### 60% toleration
+![Schelling 100 iterations, 60% toleration](../../imgs_for_readme/schelling/Schelling_100_60.png)
+
+### 50% toleration
+![Schelling 100 iterations, 50% toleration](../../imgs_for_readme/schelling/Schelling_100_50.png)
+
+### 40% toleration
+![Schelling 100 iterations, 40% toleration](../../imgs_for_readme/schelling/Schelling_100_40.png)
+
+### 30% toleration
+![Schelling 100 iterations, 30% toleration](../../imgs_for_readme/schelling/Schelling_100_30.png)
+
+### 20% toleration
+![Schelling 100 iterations, 20% toleration](../../imgs_for_readme/schelling/Schelling_100_20.png)
+
+### 10% toleration
+![Schelling 100 iterations, 10% toleration](../../imgs_for_readme/schelling/Schelling_100_10.png)
+
+### 01% toleration
+![Schelling 100 iterations, 01% toleration](../../imgs_for_readme/schelling/Schelling_100_01.png)

@@ -1,7 +1,7 @@
 # HEADER FILE FOR CONSTANTS
 
-N = 20
-TOL = 0.2
+N = 100
+TOL = 0.82
 RADIUS = 1 # radius of the neighborhood
 NUMBER_OF_AGENTS = N*N	# n*n torus grid
 

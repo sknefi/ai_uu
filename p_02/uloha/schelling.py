@@ -127,8 +127,13 @@ def make_everyone_happy(agents, sad_agents, null_agents):
 		update_agents_in_radius(agents, sad_agents, random_sad_agent[0], random_sad_agent[1])
 		update_agents_in_radius(agents, sad_agents, random_null_agent[0], random_null_agent[1])
 		
+		# Remove the random sad agent and null agent from the lists
 		null_agents.remove(random_null_agent)
 		sad_agents.remove(random_sad_agent)
+  
+		# Keep track of the number of happy agents for graph
 		num_happy_agents.append(NUMBER_OF_AGENTS - len(sad_agents) - len(null_agents))
+  
 		print(len(sad_agents))
+  
 	return agents, num_happy_agents

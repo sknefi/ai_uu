@@ -52,7 +52,7 @@ def step(row, itr):
 	if itr == 0:
 		return
 	for i in range(len(row)):
-		nu_neighbours = nu_alive_cells(row, i)
+		nu_neighbours = nu_alive_cells_v2(row, i)
 		if row[i] == ALIVE:
 			if nu_neighbours == 2 or nu_neighbours == 4:
 				row_new[i] = ALIVE
