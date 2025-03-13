@@ -75,6 +75,9 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Poznámka:**  
   Tento prístup nie je úplne paralelný hill climbingom, pretože najlepšie stavy môžu pochádzať zo susedov jedného z aktuálnych stavov ⚡.
 
+![Paprsky](../../imgs_for_readme/local_searching/paprsky.png)
+
+
 ## Problémy lokálneho prehľadávania 🚧
 
 ### Lokálne optimum a plateau
@@ -85,11 +88,11 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Plateau:**  
   Oblasť, kde je veľa stavov s rovnakým skóre, čo môže spôsobiť, že algoritmus cyklicky opakuje rovnaké kroky ⚖️.
 
-![Random walk](../../imgs_for_readme/local_searching/img1.png)
+![Hill Climber](../../imgs_for_readme/local_searching/img1.png)
 
-![Random walk](../../imgs_for_readme/local_searching/img2.jpeg)
+![Hill Climber](../../imgs_for_readme/local_searching/img2.jpeg)
 
-![Random walk](../../imgs_for_readme/local_searching/colorgraphs.png)
+![Colored Graphs](../../imgs_for_readme/local_searching/colorgraphs.png)
 
 
 ## Metódy úniku z lokálneho optima 🔓
@@ -97,7 +100,7 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Náhodný reštart:**  
   Ak algoritmus uviazne v lokálnom optime, môže sa celý proces zopakovať s novou náhodnou inicializáciou 🔄.
 
-![Random walk](../../imgs_for_readme/local_searching/restart1.jpeg)
+![Restart](../../imgs_for_readme/local_searching/restart1.jpeg)
 
 
 - **Náhodná prechádzka:**  
@@ -112,7 +115,7 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Simulované žíhanie:**  
   Kombinácia hill climbing a náhodnej prechádzky, kde sa s časom znižuje pravdepodobnosť výberu horšieho stavu. Tento prístup je inšpirovaný postupným chladením v metalurgii a umožňuje prekonať prekážky v optimalizačnej krajine ❄️🔥.
 
-![Random walk](../../imgs_for_readme/local_searching/zihani.jpeg)
+![Zihani](../../imgs_for_readme/local_searching/zihani.jpeg)
 
 
 ## Záver 🎉
