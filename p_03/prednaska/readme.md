@@ -29,14 +29,23 @@ V prednáške sme si ukázali niekoľko príkladov problémov, ktoré je možné
 - **Problém N dám:**  
   Úlohou je umiestniť N dám na šachovnicu (N x N) tak, aby sa navzájom neohrozovali (dáma ohrozuje po riadkoch, stĺpcoch aj diagonálach) ♛.
 
+![N Queens](../../imgs_for_readme/local_searching/sachy.jpeg)
+
 - **SAT problém:**  
   Nájsť ohodnotenie pre logickú formulu v konjunktívnej normálnej forme, kde cieľom je splniť všetky klauzuly 💻.
+
+![SAT](../../imgs_for_readme/local_searching/sat.jpeg)
 
 - **Farebnosť grafu:**  
   Úloha nájsť obarvenie grafu s N vrcholmi tak, aby žiadne dve susedné vrcholy nemali rovnakú farbu 🎨.
 
+![Farbenie](../../imgs_for_readme/local_searching/farbenie.png)
+
 - **Loydova osmica:**  
   Posúvanie kociek v osmičke tak, aby sa dosiahlo správne usporiadanie čísel s prázdnym miestom na konci 🎲.
+
+![Loyd](../../imgs_for_readme/local_searching/loyd.jpeg)
+
 
 ## Lokálne prehľadávanie v praxi 🔍
 
