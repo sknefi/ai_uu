@@ -1,0 +1,23 @@
+c FILE: small_graph1.col
+c DESCRIPTION: Malý graf s 15 vrcholmi
+p edge 15 20
+e 1 2
+e 1 3
+e 1 4
+e 2 5
+e 2 6
+e 3 7
+e 3 8
+e 4 9
+e 5 10
+e 6 11
+e 7 12
+e 8 13
+e 9 14
+e 10 15
+e 11 12
+e 12 13
+e 13 14
+e 14 15
+e 2 8
+e 4 11
