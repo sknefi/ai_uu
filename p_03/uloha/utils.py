@@ -17,20 +17,6 @@ def readdimacs(filename):
 			# 0-indexovanie: odpočítame 1
 			Gd.add_edge(vs[0]-1, vs[1]-1)
 	return Gd
-
-def draw_colored_graph(G, coloring, color_names):
-	"""
-	Vykreslí graf s farebným obarvením.
-
-	Parametre:
-		G           - Graf (NetworkX)
-		coloring    - Pole farebných indexov (dĺžka rovnaká ako počet vrcholov)
-		color_names - Zoznam názvov farieb, napr. ['red', 'green', 'blue', ...]
-	"""
-	node_colors = [color_names[coloring[node]] for node in G.nodes()]
-	pos = nx.spring_layout(G)
-	nx.draw(G, pos, with_labels=True, node_color=node_colors, edge_color='gray')
-	plt.show()
  
 # bere na vstupu pole barev vrcholu poporade, cislum priradi nahodne barvy a vykresli graf
 def plot(G, cols):
@@ -41,5 +27,14 @@ def plot(G, cols):
 							
 	colors = [colmap[c] for c in cols]
 
+	# Zobrazí legendu s farbami
+	plt.legend(handles=[plt.scatter([], [], c=colmap[i], label=f'Color {i}') for i in range(k+1)])
+
+	# Vykreslí graf s obarvenými vrcholmi
 	nx.draw(G, node_color=colors, with_labels=True)
+
+	# Zobrazí text s počtom použitých farieb
+	num_used_colors = len(set(cols))
+	plt.title(f"Počet použitých farieb: {num_used_colors}")
+
 	plt.show()
