@@ -38,3 +38,8 @@ def plot(G, cols):
 	plt.title(f"Počet použitých farieb: {num_used_colors}")
 
 	plt.show()
+
+def init_graph(path):
+	G = readdimacs(path)
+	print("#vrcholov:", G.number_of_nodes(), ";", "#hran:", G.number_of_edges())
+	return G

@@ -16,7 +16,7 @@ def local_conflict(G, coloring, vertex):
 	
 	return sum(1 for u in G.neighbors(vertex) if coloring[u] == coloring[vertex])
 
-def hill_climbing(G, num_colors, max_iter):
+def hill_climbing(G, num_colors):
 	# Hill climbing s optimalizáciou random walk 
 	# uprednostní najnižšie číslovanú farbu v prípade rovnakého zlepšenia
 	
@@ -25,7 +25,7 @@ def hill_climbing(G, num_colors, max_iter):
 	# Inicializácia: náhodné obarvenie vrcholov
 	coloring = [random.randint(0, num_colors - 1) for _ in range(n)]
 
-	for iteration in range(max_iter):
+	for iteration in range(MAX_ITER):
 		improved = False
 		
 		for vertex in range(n):
@@ -73,8 +73,7 @@ def hill_climbing(G, num_colors, max_iter):
 				print(f"\t\t\t\t\tRandom walk: zmena vrcholu {vertex} na farbu {new_color}")
 				current_conflicts = count_conflicts(G, coloring)
 
-	return coloring, current_conflicts
-
+	return coloring 
 
 def is_coloring(G, col):
     # Overí, či je dané obarvenie korektné (žiadne dva susedné vrcholy nemajú rovnakú farbu)
