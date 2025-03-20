@@ -53,4 +53,4 @@ In this version of the Game of Life, the evolution of the system is governed by 
 ### 1D game of life
 - input: [DEAD, ALIVE, DEAD, ALIVE, ALIVE, DEAD, DEAD, ALIVE]
   
-![Game of Life](../../imgs_for_readme/game_of_life/gameoflife.png)
+	![Game of Life](../../imgs_for_readme/game_of_life/gameoflife.png)

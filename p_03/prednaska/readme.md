@@ -29,22 +29,22 @@ V prednáške sme si ukázali niekoľko príkladov problémov, ktoré je možné
 - **Problém N dám:**  
   Úlohou je umiestniť N dám na šachovnicu (N x N) tak, aby sa navzájom neohrozovali (dáma ohrozuje po riadkoch, stĺpcoch aj diagonálach) ♛.
 
-![N Queens](../../imgs_for_readme/local_searching/sachy.jpeg)
+	![N Queens](../../imgs_for_readme/local_searching/sachy.jpeg)
 
 - **SAT problém:**  
   Nájsť ohodnotenie pre logickú formulu v konjunktívnej normálnej forme, kde cieľom je splniť všetky klauzuly 💻.
 
-![SAT](../../imgs_for_readme/local_searching/sat.jpeg)
+	![SAT](../../imgs_for_readme/local_searching/sat.jpeg)
 
 - **Farebnosť grafu:**  
   Úloha nájsť obarvenie grafu s N vrcholmi tak, aby žiadne dve susedné vrcholy nemali rovnakú farbu 🎨.
 
-![Farbenie](../../imgs_for_readme/local_searching/farbenie.png)
+	![Farbenie](../../imgs_for_readme/local_searching/farbenie.png)
 
 - **Loydova osmica:**  
   Posúvanie kociek v osmičke tak, aby sa dosiahlo správne usporiadanie čísel s prázdnym miestom na konci 🎲.
 
-![Loyd](../../imgs_for_readme/local_searching/loyd.jpeg)
+	![Loyd](../../imgs_for_readme/local_searching/loyd.jpeg)
 
 
 ## Lokálne prehľadávanie v praxi 🔍
@@ -109,13 +109,13 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Náhodný reštart:**  
   Ak algoritmus uviazne v lokálnom optime, môže sa celý proces zopakovať s novou náhodnou inicializáciou 🔄.
 
-![Restart](../../imgs_for_readme/local_searching/restart1.jpeg)
+	![Restart](../../imgs_for_readme/local_searching/restart1.jpeg)
 
 
 - **Náhodná prechádzka:**  
   Dočasné prepnutie na náhodný výber susedného stavu, aby sa uniklo zo stagnácie 🎲.
 
-![Random walk](../../imgs_for_readme/local_searching/randomprechadzka.jpeg)
+	![Random walk](../../imgs_for_readme/local_searching/randomprechadzka.jpeg)
 
 
 - **Tabu tabuľka:**  
@@ -124,7 +124,7 @@ Pri lokálnom prehľadávaní pracujeme s okolitými stavmi aktuálneho stavu. C
 - **Simulované žíhanie:**  
   Kombinácia hill climbing a náhodnej prechádzky, kde sa s časom znižuje pravdepodobnosť výberu horšieho stavu. Tento prístup je inšpirovaný postupným chladením v metalurgii a umožňuje prekonať prekážky v optimalizačnej krajine ❄️🔥.
 
-![Zihani](../../imgs_for_readme/local_searching/zihani.jpeg)
+	![Zihani](../../imgs_for_readme/local_searching/zihani.jpeg)
 
 
 ## Záver 🎉
