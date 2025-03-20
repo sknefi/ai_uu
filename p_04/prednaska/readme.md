@@ -142,6 +142,8 @@ John Holland predstavil svoje genetické algoritmy v knihe *Adaptation in Natura
 
 Tento rámec môže byť aplikovaný na riešenie rôznych problémov, od grafového obarvenia po optimalizáciu dizajnu či evolučné programovanie.
 
+![Algoritmus popis](../../imgs_for_readme/evolution_algo/holland_ga.jpeg)
+
 ## Aplikácie evolučných algoritmov
 
 ### Výhody evolučných algoritmov
