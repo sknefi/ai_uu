@@ -2,6 +2,8 @@
 
 Táto prednáška predstavuje základné princípy umelej evolúcie a evolučných algoritmov, ktoré využívajú inšpiráciu z prírodného evolučného procesu (napr. Darwinovej teórie) na riešenie zložitých optimalizačných úloh. Evolučné algoritmy sú mimoriadne užitočné, najmä keď nevieme presne, ako má ideálne riešenie vyzerať, ale poznáme požadované vlastnosti.
 
+![Evoulution humanity](../../imgs_for_readme/evolution_algo/evolution_human.png)
+
 ## Základné princípy umelej evolúcie
 
 - **Inšpirácia z biológie:**  
