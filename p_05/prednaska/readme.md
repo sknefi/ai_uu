@@ -1,0 +1,1 @@
+Opakovanie evelučných algoritmov (prednáška `p_04`)
