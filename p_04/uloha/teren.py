@@ -6,33 +6,43 @@ from constants import *
 from utils import plot_results
 
 def evaluate(individual):
-	# Terrain smoothness: smaller differences between adjacent points are better
+	# Calculate terrain smoothness by summing differences between adjacent points
+	# Smaller differences indicate smoother terrain
 	smoothness = sum(abs(individual[i] - individual[i + 1]) for i in range(len(individual) - 1))
 
-	# Land ratio: we want approximately 60% of points above sea level
+	# Calculate the ratio of land above sea level
+	# Target is approximately 60% of points above sea level
 	land_ratio = sum(1 for x in individual if x > SEA_LEVEL) / len(individual)
-	land_penalty = (land_ratio - 0.6) ** 2  # penalty if ratio differs from 0.6
+	# Apply penalty if the ratio deviates from the target of 0.6
+	land_penalty = (land_ratio - 0.6) ** 2
 
-	# Total fitness is the sum of smoothness and land ratio penalty
+	# Combine smoothness and land ratio penalty for total fitness
+	# Lower fitness is better (minimization problem)
 	total_fitness = smoothness + land_penalty
 	return total_fitness,
 
 def init_toolbox():
-    # Define fitness and individuals
-	creator.create("FitnessTerrain", base.Fitness, weights=(-1.0,))  # Minimalization problem
+	# Define fitness and individuals
+	creator.create("FitnessTerrain", base.Fitness, weights=(-1.0,))  # Minimization problem
 	creator.create("Individual", list, fitness=creator.FitnessTerrain)
  
-	# Initialize toolbox
+	# Initialize toolbox with genetic operators
 	toolbox = base.Toolbox()
-	toolbox.register("attr_float", random.uniform, 0, 1)  # Terrain height between 0 and 1
+	# Generate random terrain heights between 0 and 1
+	toolbox.register("attr_float", random.uniform, 0, 1)
+	# Create individuals with specified terrain length
 	toolbox.register("individual", tools.initRepeat, creator.Individual,
 					toolbox.attr_float, n=TERRAIN_LENGTH)
+	# Create population of individuals
 	toolbox.register("population", tools.initRepeat, list, toolbox.individual)
  
 	# Register genetic operators
 	toolbox.register("evaluate", evaluate)
-	toolbox.register("mate", tools.cxBlend, alpha=0.5)  # Blend crossover for real numbers
+	# Blend crossover for real numbers with alpha=0.5
+	toolbox.register("mate", tools.cxBlend, alpha=0.5)
+	# Gaussian mutation with mean=0, std=0.1, and 10% probability per attribute
 	toolbox.register("mutate", tools.mutGaussian, mu=0, sigma=0.1, indpb=0.1)
+	# Tournament selection with size 2
 	toolbox.register("select", tools.selTournament, tournsize=2)
  
 	return toolbox
@@ -47,9 +57,10 @@ def evolve_terrain(toolbox):
 		logbook: Statistics of the evolution
 		hof: Hall of Fame containing best individual
 	"""
+	# Initialize population
 	pop = toolbox.population(n=POP_SIZE)
 	
- # Setup statistics
+	# Setup statistics tracking
 	stats = tools.Statistics(lambda ind: ind.fitness.values)
 	stats.register("avg", np.mean)
 	stats.register("min", np.min)
@@ -58,7 +69,7 @@ def evolve_terrain(toolbox):
 	# Create Hall of Fame to store best solution
 	hof = tools.HallOfFame(1)
 
-	# Run the algorithm
+	# Run the evolutionary algorithm
 	pop, logbook = algorithms.eaSimple(pop, toolbox, cxpb=CXPB, mutpb=MUTPB,
 										ngen=NGEN, stats=stats, halloffame=hof)
 
