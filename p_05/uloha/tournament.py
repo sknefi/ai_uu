@@ -1,4 +1,6 @@
 from prisoners import *
+from constants import *
+from other_strategies import *
 
 # Funkce pro výpočet skóre na základě tahů obou hráčů
 def rozdej_skore(tah1, tah2):
@@ -42,7 +44,7 @@ def play(f1, f2, MAX_ROUNDS):
     return skore1, skore2, historie1, historie2
 
 def tournament():
-	ucastnici = [fk_solution, tit_for_tat]
+	ucastnici = [fk_solution, adaptive]
 	l = len(ucastnici)
 	skores = [0 for _ in range(l)]
 
