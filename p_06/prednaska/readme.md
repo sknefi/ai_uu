@@ -150,3 +150,11 @@ Tento dokument poskytuje prehľad základných konceptov umelej neurónovej siet
 | **Deep Neural Network (DNN)**             | Extrakcia vlastností (feature learning), obrazová klasifikácia   |
 | **Recurrent Neural Network (RNN)**        | Predikcia časových radov, spracovanie prirodzeného jazyka, reč    |
 | **Convolutional Neural Network (CNN)**    | Rozpoznávanie a detekcia objektov, segmentácia obrazov, FaceID   |
+
+## Zdroje
+
+### Tensorflow playground
+http://playground.tensorflow.org
+
+### Evolúcia a Neuronové siete
+https://www.youtube.com/watch?v=-sg-GgoFCP0
