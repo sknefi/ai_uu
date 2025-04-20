@@ -4,4 +4,4 @@ def main():
 	tournament()
 
 if __name__ == "__main__":
-    main()
+	main()

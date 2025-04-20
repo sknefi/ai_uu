@@ -1,4 +1,5 @@
 import random
+
 def random_strategy(my_history, opponent_history):
 	# Randomly choose between cooperation (0) and betrayal (1)
 	return random.choice([0, 1])
