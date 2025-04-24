@@ -287,11 +287,6 @@ def draw_window(mes, mines, flag, level, generation, timer):
     t = LEVEL_FONT.render("timer: " + str(timer), 1, WHITE)   
     WIN.blit(t, (650  , HEIGHT - 30))
     
-    
-    
-    
-    
-
     WIN.blit(FLAG, (flag.rect.x, flag.rect.y))    
          
     # vykresleni min
@@ -325,65 +320,95 @@ def draw_text(text):
 # čtveřici výstupů pro nahoru, dolu, doleva, doprava    
 #----------------------------------------------------------------------------
 
-
-
-# Implementace feedforward neuronové sítě
 def nn_function(inp, wei):
-    # Očekáváme, že wei má správnou délku podle architektury sítě
-    # Topologie sítě: 
-    # - 15 vstupů (8 pro miny, 3 pro vlajku, 4 pro stěny)
-    # - 8 neuronů ve skryté vrstvě
-    # - 4 výstupní neurony (nahoru, dolů, doleva, doprava)
-    
-    # Celkový počet vah = (15*8 + 8) + (8*4 + 4) = 128 + 36 = 164
-    
-    # Zjistíme počet vstupů
-    n_inputs = len(inp)
-    
-    # Počet neuronů ve skryté vrstvě
-    n_hidden = 8
-    
-    # Počet výstupů
-    n_outputs = 4
-    
-    # Rozdělení vah pro jednotlivé vrstvy
-    idx = 0
-    
-    # Váhy a prahy pro skrytou vrstvu
-    hidden_weights = np.array(wei[idx:idx + n_inputs*n_hidden]).reshape(n_inputs, n_hidden)
-    idx += n_inputs*n_hidden
-    hidden_biases = np.array(wei[idx:idx + n_hidden])
-    idx += n_hidden
-    
-    # Váhy a prahy pro výstupní vrstvu
-    output_weights = np.array(wei[idx:idx + n_hidden*n_outputs]).reshape(n_hidden, n_outputs)
-    idx += n_hidden*n_outputs
-    output_biases = np.array(wei[idx:idx + n_outputs])
-    
-    # Forward pass skrze síť
-    # Aktivace skryté vrstvy - použijeme ReLU
-    hidden_outputs = np.dot(np.array(inp), hidden_weights) + hidden_biases
-    hidden_outputs = np.maximum(0, hidden_outputs)  # ReLU
-    
-    # Aktivace výstupní vrstvy - přes softmax pro pravděpodobnostní rozložení
-    output = np.dot(hidden_outputs, output_weights) + output_biases
-    
-    # Aplikujeme softmax pro získání pravděpodobností
-    exp_output = np.exp(output - np.max(output))
-    output_probs = exp_output / np.sum(exp_output)
-    
-    # Vrátíme index s nejvyšší pravděpodobností
-    return [np.argmax(output_probs)]
+    """
+    Jednoduchá feed-forward sieť:
+      - 15 vstupov
+      - 8 skrytých neurónov (ReLU)
+      - 4 výstupy (softmax + argmax)
+    """
 
+    # 1) definujeme veľkosti vrstiev
+    n_in = len(inp)        # n_in = 15, počet senzorov v inpute
+    n_hidden = 8           # pevne 8 neurónov v skrytej vrstve
+    n_out = 4              # 4 možné akcie: ↑, ↓, ←, →
+
+    # 2) rozdelíme vektor váh wei na 4 bloky:
+    #    a) váhy vstup→skrytá
+    end1 = n_in * n_hidden
+    # end1 = 15 * 8 = 120
+
+    W1_flat = wei[0:end1]
+    # W1_flat je zoznam dĺžky 120
+
+    W1 = np.array(W1_flat).reshape(n_in, n_hidden)
+    # W1 má tvar (15, 8), každá z 15 vstupných dimenzií má 8 váh
+
+    #    b) biasy skrytej vrstvy
+    start2 = end1
+    end2   = start2 + n_hidden
+    # end2 = 120 + 8 = 128
+
+    b1 = np.array(wei[start2:end2])
+    # b1 je 1D pole dĺžky 8
+
+    #    c) váhy skrytá→výstup
+    start3  = end2
+    end3    = start3 + n_hidden * n_out
+    # end3 = 128 + 8*4 = 160
+
+    W2_flat = wei[start3:end3]
+    # W2_flat je zoznam dĺžky 32
+
+    W2 = np.array(W2_flat).reshape(n_hidden, n_out)
+    # W2 má tvar (8, 4)
+
+    #    d) biasy výstupnej vrstvy
+    b2 = np.array(wei[end3:end3 + n_out])
+    # b2 je pole dĺžky 4
+
+    # 3) forward pass – skrytá vrstva
+    inp_arr = np.array(inp)	# premena vstupu na numpy array
+    # inp_arr má tvar (15,)
+
+    hidden_linear = np.dot(inp_arr, W1) + b1
+    # hidden_linear má tvar (8,)
+    # každý z 8 neurónov dostane vážený súčet + bias
+
+    hidden_activated = np.maximum(0, hidden_linear)
+    # ReLU: všetky záporné hodnoty sa nastavia na 0
+    # hidden_activated má tvar (8,)
+
+    # 4) forward pass – výstupná vrstva
+    output_linear = np.dot(hidden_activated, W2) + b2
+    # output_linear má tvar (4,)
+    # tieto 4 čísla sú „skryté skóre“ pre každú z akcií
+
+    # 5) softmax – zmena na pravdepodobnosti
+    shifted = output_linear - np.max(output_linear)
+    # shifted má tvar (4,), posunuté o maximum, pretože exp(shifted) je stabilnejšie
+
+    exp_vals = np.exp(shifted)
+    # exp_vals má tvar (4,), každá zložka je exp(shifted[i])
+
+    sum_exp = np.sum(exp_vals)
+    # sum_exp je jediné číslo = ∑ exp_vals[i]
+
+    probs = exp_vals / sum_exp
+    # probs má tvar (4,), ∑ probs = 1
+
+    # 6) vybereme index najväčšej pravdepodobnosti
+    action = int(np.argmax(probs))
+    # action je jedno z 0,1,2,3
+
+    return action
 
 # naviguje jedince pomocí neuronové sítě a jeho vlastní sekvence v něm schované
-def nn_navigate_me(me, inp, mines, flag):
+def nn_navigate_me(me, inp):
     # Získat kompletní senzorické vstupy
-    sensors = my_senzor(me, mines, flag)
     
     # Vyhodnocení sítě s váhami z me.sequence
-    out = np.array(nn_function(sensors, me.sequence))
-    ind = out[0]
+    ind = nn_function(inp, me.sequence)
     
     # Akce na základě výstupu neuronové sítě
     # nahoru, pokud není zeď
@@ -420,10 +445,10 @@ def check_mes_won(mes, flag):
 
 # resi pohyb mes
 def handle_mes_movement(mes, mines, flag):
-    
-    for me in mes:
-        if me.alive and not me.won:
-            nn_navigate_me(me, [], mines, flag)
+	for me in mes:
+		if me.alive and not me.won:
+			sensors_input = my_senzor(me, mines, flag)
+			nn_navigate_me(me, sensors_input)
 
 
 
@@ -442,17 +467,15 @@ def update_mes_timers(mes, timer):
 
 
 # funkce pro výpočet fitness všech jedinců
-def handle_mes_fitnesses(mes, flag):    
+def handle_mes_fitnesses(mes, flag):   
     for me in mes:
-        # Základní fitness je čas, po který agent žil
-        base_fitness = me.timealive
         
         if me.won:
             # Pokud agent dosáhl cíle, dostane bonus k fitness
             # Bonus je inverzně proporcionální k vzdálenosti, kterou musel urazit
             # Čím méně kroků potřeboval, tím vyšší bonus
             efficiency_bonus = 10000 / (me.dist + 1)  # +1 aby se vyhnulo dělení nulou
-            me.fitness = base_fitness + 5000 + efficiency_bonus
+            me.fitness = me.timealive + 5000 + efficiency_bonus
         else:
             # Pokud agent nedosáhl cíle, fitness závisí na tom, jak blízko se k němu dostal
             me_center_x = me.rect.x + me.rect.width/2
@@ -473,7 +496,7 @@ def handle_mes_fitnesses(mes, flag):
             # Přidáme bonus za přiblížení se k cíli
             proximity_bonus = proximity_factor * 1000
             
-            me.fitness = base_fitness + proximity_bonus
+            me.fitness = me.timealive + proximity_bonus
     
     
 
