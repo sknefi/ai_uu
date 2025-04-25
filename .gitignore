@@ -1,0 +1,10 @@
+# Virtual environments
+tf_env/
+venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# OS specific files
+.DS_Store
