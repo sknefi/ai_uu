@@ -44,7 +44,7 @@ def play(f1, f2, MAX_ROUNDS):
     return skore1, skore2, historie1, historie2
 
 def tournament():
-	ucastnici = [fk_solution, adaptive]
+	ucastnici = [fk_solution, adaptive, tit_for_tat, random_strategy, pavlov]
 	l = len(ucastnici)
 	skores = [0 for _ in range(l)]
 

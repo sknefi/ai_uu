@@ -62,3 +62,6 @@ Každé piate kolo (`BETRAY_ROUND = 5`) stratégia automaticky zradí, aby otest
 ## Priebeh turnaja
 
 Turnaj je implementovaný ako každý s každým. Výsledky sa vypíšu po skončení:
+Občas moja stratégia vyhrá, občas nie
+
+![Prisoners](../../imgs_for_readme/prisoner/prisoner.png)
