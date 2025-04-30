@@ -67,10 +67,16 @@ Tento projekt využíva knižnicu `DEAP` (Distributed Evolutionary Algorithms in
 
 ---
 
-## Spustenie
+## Vygenerovaný terén pomocou knižnice DEAP
 
-1. **Nainštalujte potrebné knižnice:**
+### Terén 1
 
-   ```bash
-   pip install deap numpy matplotlib
+![Terrain 1](../../imgs_for_readme/terain/terrain0.png)
 
+### Terén 2
+
+![Terrain 2](../../imgs_for_readme/terain/terrain1.png)
+
+### Terén 3
+
+![Terrain 3](../../imgs_for_readme/terain/terrain2.png)
