@@ -82,7 +82,7 @@ def main():
 			
 			print(f"\nPrediction for image {i+1}:")
 			print("True label:", GREEN + f"{class_names[true_label]}" + RESET) # use green color
-			print("Top 3 predictions:")
+			print("Top predictions:")
 			for idx in sorted_indices:
 				print(f"{class_names[idx]}: {probabilities[idx]*100:.2f}%")
 			print("-" * 50)
