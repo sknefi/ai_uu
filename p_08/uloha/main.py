@@ -4,7 +4,7 @@ from constants import *
 from env import Env, create_environment
 from ufo import Ufo
 from renderer import init_window, draw_window
-from utils import print_stats
+from utils import print_stats, select_map
 
 def main():
     # Initialize pygame
