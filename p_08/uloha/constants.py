@@ -1,9 +1,9 @@
 import pygame
-
+from colors import Colors
 # Environment constants
 WIDTH = 12
 HEIGHT = 9
-TILESIZE = 50
+TILESIZE = 80
 BLOCKTYPES = 5
 FPS = 20
 
@@ -12,6 +12,13 @@ WHITE = (255, 255, 255)
 
 # Initialize pygame font
 pygame.font.init()
+
+# Algorithm colors
+ALGO_COLORS = {
+    "greedy": Colors.YELLOW,
+    "dijkstra": Colors.CYAN,
+    "astar": Colors.GREEN
+}
 
 # Fonts
 BOOM_FONT = pygame.font.SysFont("comicsans", 100)
