@@ -160,6 +160,8 @@ def greedy_best_first_search(start_pos, goal_pos, get_neighbors_fn):
     
     while open_set:
         # Get the node with the lowest heuristic value
+		# heapq.heappop returns the smallest element from the heap, 
+		# thats how heapq works
         _, current = heapq.heappop(open_set)
         current_x, current_y = current
         
@@ -186,7 +188,6 @@ def greedy_best_first_search(start_pos, goal_pos, get_neighbors_fn):
     
     # Reconstruct the path from start to goal
     path = reconstruct_path(came_from, start_pos, goal_pos)
-    
     return path, expanded
 
 def dijkstra(start_pos, goal_pos, get_neighbors_fn):
@@ -311,6 +312,9 @@ def astar(start_pos, goal_pos, get_neighbors_fn):
                 came_from[neighbor] = current
                 
                 # Calculate the f_score = g_score + heuristic
+                # f() = g() + h()
+                # g() is the cost of the path from start to the current node
+                # h() is the heuristic estimate of the distance from the current node to the goal
                 f_score = new_cost + heuristic(neighbor[0], neighbor[1], goal_x, goal_y)
                 
                 # Add to the open set with its f_score as priority
